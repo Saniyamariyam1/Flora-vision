@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Flora-vision</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+<style>
+  .task h1 {
+   color: rgb(197, 5, 78);
+   padding-left: 40%;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+ .button-wrapper {
+    text-align: center;
+    margin-top: 50px; /* Adjust the margin to move the buttons up or down */
+}
+
+.button-36, .button-37 {
+    background-image: linear-gradient(109.6deg, rgba(61, 131, 97, 1) 11.2%, rgba(28, 103, 88, 1) 91.1%);
+    border-radius: 12px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    height: 8rem; /* Increase the height */
+    padding: 1.2rem 2.6rem; /* Increase the padding */
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+    transition: all 0.5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-bottom: 20px; /* Add margin to move the buttons closer together */
+    margin-top: 50px;
+}
+
+.button-36:hover, .button-37:hover {
+   
+    transition-duration: 0.1s;
+    color: rgb(226, 43, 125);
+}
+
+@media (min-width: 768px) {
+    .button-36, .button-37 {
+        padding: 1.2rem 3.6rem; /* Increase the padding */
+    }
+}
+
+.button-37 {
+    margin-left: 200px; /* Adjust margin between the buttons */
+    
+}
+.button-36 {
+    margin-left: -280px; /* Adjust margin between the buttons */
+    margin-right: 130px;
+
+}
+
+.subheading {
+    font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: -200px; /* Adjust margin as needed */
+    margin-bottom: 100px; /* Adjust margin as needed */
+    color: #FFFFFF;
+}
+
+
+</style>
+</head>
+
+<body>
+
+    <!-- home
+    ================================================== -->
+    <main class="s-home s-home--particles">
+
+        <div id="particles-js" class="home-particles"></div>
+        
+        <div class="gradient-overlay"></div>
+
+        <div class="home-content">
+
+            <h2 class="subheading">CHOOSE YOUR TASK</h2>
+            <div class="button-wrapper">
+                <button class="button-36" role="button" onclick="redirectTo('{{ button_url_1 }}')">Real time classification and labelling</button>
+
+                <button class="button-37" role="button" onclick="redirectTo('{{ button_url_2 }}')">Quality checking</button>
+            </div>
+
+        </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/polygons.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <!-- Define redirectTo function -->
+  <script>
+    function redirectTo(page) {
+      window.location.href = page;
+    }
+  </script>
+
+</body>
+
+</html>

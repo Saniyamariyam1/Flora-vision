@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Flora-vision</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+<style>
+  .task h1 {
+   color: rgb(197, 5, 78);
+   padding-left: 40%;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+ .button-wrapper {
+    text-align: center;
+    margin-top: 50px; /* Adjust the margin to move the buttons up or down */
+}
+
+
+
+
+
+@media (min-width: 768px) {
+    .continue {
+        padding: 1.2rem 3.6rem; /* Increase the padding */
+    }
+}
+
+.subheading {
+    font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: -200px; /* Adjust margin as needed */
+    margin-bottom: 100px; /* Adjust margin as needed */
+    color: #FFFFFF;
+}
+/* Style for the searchable dropdown */
+#sample-dropdown {
+    background-image: linear-gradient(109.6deg, rgba(61, 131, 97, 1) 11.2%, rgba(28, 103, 88, 1) 91.1%);
+    color: white;
+    padding: 15px; /* Increase padding for larger size */
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 500px; /* Increase width */
+    font-size: 20px; /* Increase font size */
+    height: 80px; /* Increase height */
+    font-weight: bold;
+}
+
+/* Style for the dropdown options */
+#sample-dropdown option {
+    color: black; /* Set option text color to black */
+}
+
+.continue:hover{
+    transition-duration: 0.1s;
+    color: rgb(226, 43, 125);
+}
+.continue{
+    background-image: linear-gradient(109.6deg, rgba(61, 131, 97, 1) 11.2%, rgba(28, 103, 88, 1) 91.1%);
+    border-radius: 15px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    height: 8rem; /* Increase the height */
+    padding: 0.4rem 1.8rem; /* Increase the padding */
+    text-align: center;
+    margin-top: 50px;
+    transition: all 0.5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+</style>
+</head>
+
+<body>
+
+    <!-- home
+    ================================================== -->
+    <main class="s-home s-home--particles">
+
+        <div id="particles-js" class="home-particles"></div>
+        
+        <div class="gradient-overlay"></div>
+
+        <div class="home-content">
+
+            <h2 class="subheading">QUALITY CHECKING MODULE</h2>
+            <div class="button-wrapper">
+           
+         <select id="sample-dropdown" style="margin: auto;">
+    <option value="">Choose your samples</option> <!-- Add the first option manually -->
+    {% for sample in samples %}
+    <option value="{{ sample }}">{{ sample }}</option>
+    {% endfor %}
+</select>
+<br><br>
+<button id="continue-btn" class="continue" style="margin: auto;" role="button" onclick="redirectToObjectDetection()" disabled>Continue</button>
+
+
+
+        </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/polygons.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <!-- Define redirectTo function -->
+  <script>
+    
+    function redirectToObjectDetection() {
+        // Get the value of the selected sample
+        var selectedSample = document.getElementById("sample-dropdown").value;
+        
+        // Check if at least one sample is selected
+        if (selectedSample !== "") {
+            // Redirect to the object detection URL
+            window.location.href = "/object_detection?sample=" + encodeURIComponent(selectedSample);
+        }
+    }
+    
+    // Function to enable/disable the continue button based on the selection
+    function handleSelection() {
+        var selectedSample = document.getElementById("sample-dropdown").value;
+        var continueBtn = document.getElementById("continue-btn");
+        
+        // Enable the continue button if at least one sample is selected, otherwise disable it
+        if (selectedSample !== "") {
+            continueBtn.disabled = false;
+        } else {
+            continueBtn.disabled = true;
+        }
+    }
+    
+    // Add event listener to the dropdown list to handle changes in selection
+    document.getElementById("sample-dropdown").addEventListener("change", handleSelection);
+
+  </script>
+
+</body>
+
+</html>
